@@ -1,244 +1,244 @@
 # Mac Setup Script
 
-Script automatizado para configurar un Mac desde cero. Perfecto para cuando formateas tu computadora o cambias a una nueva Mac.
+Automated script to set up a Mac from scratch. Perfect for when you format your computer or switch to a new Mac.
 
-## Características
+## Features
 
-- **Modo Semi-automático**: Confirma antes de cambios importantes
-- **Modular**: Scripts separados por categoría
-- **Completo**: Desde Homebrew hasta dotfiles personalizados
-- **Inteligente**: Detecta arquitectura (Apple Silicon/Intel)
+- **Semi-automatic Mode**: Confirms before important changes
+- **Modular**: Separate scripts by category
+- **Complete**: From Homebrew to custom dotfiles
+- **Smart**: Detects architecture (Apple Silicon/Intel)
 
-## ¿Qué Instala?
+## What Does It Install?
 
 ### 1. Homebrew
-- Package manager para macOS
-- Herramientas CLI básicas (git, wget, curl, tree, jq)
+- Package manager for macOS
+- Basic CLI tools (git, wget, curl, tree, jq)
 
 ### 2. Zsh + Oh My Zsh
-- Shell moderno con Oh My Zsh
-- Tema Powerlevel10k
-- Plugins útiles:
+- Modern shell with Oh My Zsh
+- Powerlevel10k theme
+- Useful plugins:
   - zsh-autosuggestions
   - zsh-syntax-highlighting
   - zsh-completions
 
-### 3. Lenguajes de Programación
-- **Node.js**: nvm + versión LTS + pnpm + yarn
+### 3. Programming Languages
+- **Node.js**: nvm + LTS version + pnpm + yarn
 - **Python**: pyenv + Python 3.12/3.11 + pipenv + poetry
 
-### 4. Aplicaciones
+### 4. Applications
 - Visual Studio Code
 - Cursor (AI-powered editor)
 - OrbStack (Docker/Linux)
 - Nerd Fonts (FiraCode, Hack, Meslo, JetBrains Mono)
 
-### 5. Herramientas CLI Modernas
+### 5. Modern CLI Tools
 - `gh` - GitHub CLI
 - `fzf` - Fuzzy finder
-- `bat` - Cat mejorado
-- `eza` - ls moderno
-- `ripgrep` - Búsqueda rápida
-- `fd` - Find mejorado
-- `tldr` - Documentación simplificada
-- `htop` - Monitor de sistema
+- `bat` - Enhanced cat
+- `eza` - Modern ls
+- `ripgrep` - Fast search
+- `fd` - Enhanced find
+- `tldr` - Simplified documentation
+- `htop` - System monitor
 
-### 6. Configuraciones de macOS
-- **Teclado**: Velocidad máxima, sin corrección automática
-- **Trackpad**: Tap to click, velocidad máxima
-- **Dock**: Auto-hide, animaciones rápidas
-- **Finder**: Mostrar extensiones, archivos ocultos, path bar
-- **Screenshots**: Carpeta organizada, formato PNG
+### 6. macOS Configurations
+- **Keyboard**: Maximum speed, no autocorrect
+- **Trackpad**: Tap to click, maximum speed
+- **Dock**: Auto-hide, fast animations
+- **Finder**: Show extensions, hidden files, path bar
+- **Screenshots**: Organized folder, PNG format
 
 ### 7. Dotfiles
-- `.zshrc` completo con aliases y funciones
-- `.gitconfig` con aliases y configuración optimizada
-- SSH config básico
-- Estructura de directorios (~/Developer, ~/Projects)
+- Complete `.zshrc` with aliases and functions
+- `.gitconfig` with aliases and optimized configuration
+- Basic SSH config
+- Directory structure (~/Developer, ~/Projects)
 
-## Uso Rápido
+## Quick Start
 
 ```bash
-cd mac-setup
+cd setup-script
 ./setup.sh
 ```
 
-## Instalación Detallada
+## Detailed Installation
 
-### 1. Clonar/Descargar
+### 1. Clone/Download
 
 ```bash
-# Si tienes este código localmente
-cd mac-setup
+# If you have this code locally
+cd setup-script
 ```
 
-### 2. Hacer Ejecutable (si es necesario)
+### 2. Make Executable (if needed)
 
 ```bash
 chmod +x setup.sh
 chmod +x scripts/*.sh
 ```
 
-### 3. Ejecutar
+### 3. Run
 
 ```bash
 ./setup.sh
 ```
 
-El script te preguntará antes de cada sección:
+The script will ask you before each section:
 - Homebrew
 - Zsh
-- Lenguajes (Node.js, Python)
-- Aplicaciones
-- Configuraciones macOS
+- Languages (Node.js, Python)
+- Applications
+- macOS Settings
 - Dotfiles
 
-## Scripts Individuales
+## Individual Scripts
 
-También puedes ejecutar scripts individuales:
+You can also run individual scripts:
 
 ```bash
-# Solo instalar Homebrew
+# Install Homebrew only
 ./scripts/01-homebrew.sh
 
-# Solo configurar Zsh
+# Configure Zsh only
 ./scripts/02-zsh.sh
 
-# Solo instalar lenguajes
+# Install languages only
 ./scripts/03-languages.sh
 
-# Solo instalar aplicaciones
+# Install applications only
 ./scripts/04-apps.sh
 
-# Solo configurar macOS
+# Configure macOS only
 ./scripts/05-macos.sh
 
-# Solo copiar dotfiles
+# Copy dotfiles only
 ./scripts/06-dotfiles.sh
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
-mac-setup/
-├── README.md           # Este archivo
-├── setup.sh            # Script principal
-├── scripts/            # Scripts modulares
+setup-script/
+├── README.md           # This file
+├── setup.sh            # Main script
+├── scripts/            # Modular scripts
 │   ├── 01-homebrew.sh
 │   ├── 02-zsh.sh
 │   ├── 03-languages.sh
 │   ├── 04-apps.sh
 │   ├── 05-macos.sh
 │   └── 06-dotfiles.sh
-└── dotfiles/           # Archivos de configuración
+└── dotfiles/           # Configuration files
     ├── .zshrc
     └── .gitconfig
 ```
 
-## Personalización
+## Customization
 
-### Modificar Aplicaciones
+### Modify Applications
 
-Edita `scripts/04-apps.sh` y agrega/quita aplicaciones del array:
+Edit `scripts/04-apps.sh` and add/remove applications from the array:
 
 ```bash
 APPS=(
     "visual-studio-code"
     "cursor"
     "orbstack"
-    # "google-chrome"      # Agregar Chrome
-    # "slack"              # Agregar Slack
+    # "google-chrome"      # Add Chrome
+    # "slack"              # Add Slack
 )
 ```
 
-### Modificar Herramientas CLI
+### Modify CLI Tools
 
-Edita `scripts/01-homebrew.sh` o `scripts/04-apps.sh`:
+Edit `scripts/01-homebrew.sh` or `scripts/04-apps.sh`:
 
 ```bash
 CLI_TOOLS=(
     "git"
     "wget"
-    # "neovim"    # Agregar Neovim
+    # "neovim"    # Add Neovim
 )
 ```
 
-### Modificar Configuraciones macOS
+### Modify macOS Settings
 
-Edita `scripts/05-macos.sh` para ajustar configuraciones del sistema.
+Edit `scripts/05-macos.sh` to adjust system settings.
 
-### Personalizar Dotfiles
+### Customize Dotfiles
 
-Los dotfiles están en `dotfiles/`:
-- Edita `.zshrc` para agregar aliases, funciones, etc.
-- Edita `.gitconfig` para cambiar aliases de git
+Dotfiles are in `dotfiles/`:
+- Edit `.zshrc` to add aliases, functions, etc.
+- Edit `.gitconfig` to change git aliases
 
-## Después de la Instalación
+## Post-Installation
 
-### 1. Configurar Git
+### 1. Configure Git
 
 ```bash
-git config --global user.name "Tu Nombre"
-git config --global user.email "tu@email.com"
+git config --global user.name "Your Name"
+git config --global user.email "your@email.com"
 ```
 
-### 2. Configurar Powerlevel10k (Tema de Terminal)
+### 2. Configure Powerlevel10k (Terminal Theme)
 
 ```bash
 p10k configure
 ```
 
-### 3. Generar SSH Key
+### 3. Generate SSH Key
 
 ```bash
-ssh-keygen -t ed25519 -C "tu@email.com"
+ssh-keygen -t ed25519 -C "your@email.com"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
-# Copiar clave pública
+# Copy public key
 cat ~/.ssh/id_ed25519.pub | pbcopy
 ```
 
-Luego agrega la clave a GitHub/GitLab.
+Then add the key to GitHub/GitLab.
 
-### 4. Cambiar Fuente de Terminal
+### 4. Change Terminal Font
 
-1. Abre Terminal/iTerm2
-2. Ve a Preferencias → Profiles → Text
-3. Cambia la fuente a cualquier Nerd Font (ej: "MesloLGS Nerd Font")
+1. Open Terminal/iTerm2
+2. Go to Preferences → Profiles → Text
+3. Change font to any Nerd Font (e.g., "MesloLGS Nerd Font")
 
-### 5. Reiniciar Terminal
+### 5. Restart Terminal
 
 ```bash
 exec $SHELL -l
 ```
 
-O simplemente cierra y abre tu terminal.
+Or simply close and reopen your terminal.
 
-## Respaldar Dotfiles en GitHub
+## Backup Dotfiles to GitHub
 
-### Crear Repositorio
+### Create Repository
 
 ```bash
-cd mac-setup
+cd setup-script
 git init
 git add .
-git commit -m "Initial dotfiles setup"
-git remote add origin git@github.com:TU_USUARIO/dotfiles.git
+git commit -m "feat(macos): initial dotfiles setup"
+git remote add origin git@github.com:YOUR_USER/setup-script.git
 git push -u origin main
 ```
 
-### Usar en Nueva Mac
+### Use on New Mac
 
 ```bash
-# Clonar repo
-git clone git@github.com:TU_USUARIO/dotfiles.git
-cd dotfiles
+# Clone repo
+git clone git@github.com:YOUR_USER/setup-script.git
+cd setup-script
 
-# Ejecutar setup
+# Run setup
 ./setup.sh
 ```
 
-## Aliases Útiles (Incluidos en .zshrc)
+## Useful Aliases (Included in .zshrc)
 
 ### Git
 - `gs` - git status
@@ -246,7 +246,7 @@ cd dotfiles
 - `gc` - git commit -m
 - `gp` - git push
 - `gl` - git pull
-- `glog` - git log bonito
+- `glog` - pretty git log
 
 ### Node.js
 - `ni` - npm install
@@ -259,24 +259,24 @@ cd dotfiles
 - `dc` - docker-compose
 - `dcu` - docker-compose up
 
-### Sistema
-- `update` - Actualizar Homebrew y paquetes
-- `cleanup` - Limpiar caches
-- `ll` - ls mejorado (con eza/exa)
+### System
+- `update` - Update Homebrew and packages
+- `cleanup` - Clean caches
+- `ll` - enhanced ls (with eza/exa)
 
-Ver todos los aliases: `alias`
+View all aliases: `alias`
 
-## Funciones Útiles (Incluidas en .zshrc)
+## Useful Functions (Included in .zshrc)
 
-- `mkcd <dir>` - Crear directorio y entrar
-- `extract <file>` - Extraer cualquier archivo comprimido
-- `gcl <url>` - Git clone y cd al directorio
-- `killport <puerto>` - Matar proceso en puerto
-- `serve [puerto]` - Servidor HTTP rápido
+- `mkcd <dir>` - Create directory and cd into it
+- `extract <file>` - Extract any compressed file
+- `gcl <url>` - Git clone and cd into directory
+- `killport <port>` - Kill process on port
+- `serve [port]` - Quick HTTP server
 
 ## Troubleshooting
 
-### Homebrew no se encuentra
+### Homebrew not found
 
 ```bash
 # Apple Silicon
@@ -286,57 +286,57 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(/usr/local/bin/brew shellenv)"
 ```
 
-### NVM no funciona
+### NVM not working
 
 ```bash
 source ~/.zshrc
 ```
 
-### Cambios de macOS no aplican
+### macOS changes not applying
 
-1. Cerrar sesión y volver a entrar
-2. O reiniciar el sistema
+1. Log out and log back in
+2. Or restart the system
 
-### Oh My Zsh no carga
+### Oh My Zsh not loading
 
 ```bash
 source $ZSH/oh-my-zsh.sh
 ```
 
-## Requisitos
+## Requirements
 
-- macOS (probado en macOS 12+)
-- Conexión a Internet
-- Permisos de administrador
+- macOS (tested on macOS 12+)
+- Internet connection
+- Administrator permissions
 
-## Notas Importantes
+## Important Notes
 
-1. **Backup**: El script hace backup de dotfiles existentes antes de sobrescribir
-2. **Seguro**: Modo semi-automático te permite controlar qué se instala
-3. **Idempotente**: Puedes ejecutarlo múltiples veces sin problemas
-4. **Logs**: Todos los logs se guardan en `setup.log`
+1. **Backup**: The script backs up existing dotfiles before overwriting
+2. **Safe**: Semi-automatic mode lets you control what gets installed
+3. **Idempotent**: You can run it multiple times without issues
+4. **Logs**: All logs are saved in `setup.log`
 
-## Personalización Adicional
+## Additional Customization
 
-### Agregar más dotfiles
+### Add more dotfiles
 
-1. Agrega archivos a `dotfiles/`
-2. Modifica `scripts/06-dotfiles.sh` para copiarlos
+1. Add files to `dotfiles/`
+2. Modify `scripts/06-dotfiles.sh` to copy them
 
-### Agregar comandos post-instalación
+### Add post-installation commands
 
-Edita `setup.sh` al final para agregar pasos adicionales.
+Edit `setup.sh` at the end to add additional steps.
 
-## Contribuir
+## Contributing
 
-Siéntete libre de personalizar este script para tus necesidades. Algunas ideas:
+Feel free to customize this script for your needs. Some ideas:
 
-- Agregar más aplicaciones
-- Agregar más configuraciones de macOS
-- Agregar scripts de VSCode/Cursor
-- Agregar configuración de SSH/GPG más avanzada
+- Add more applications
+- Add more macOS configurations
+- Add VSCode/Cursor scripts
+- Add more advanced SSH/GPG configuration
 
-## Recursos
+## Resources
 
 - [Homebrew](https://brew.sh/)
 - [Oh My Zsh](https://ohmyz.sh/)
@@ -345,10 +345,10 @@ Siéntete libre de personalizar este script para tus necesidades. Algunas ideas:
 - [NVM](https://github.com/nvm-sh/nvm)
 - [Pyenv](https://github.com/pyenv/pyenv)
 
-## Licencia
+## License
 
-Libre para usar, modificar y distribuir.
+Free to use, modify, and distribute.
 
 ---
 
-¡Disfruta tu Mac configurado! 🚀
+Enjoy your configured Mac! 🚀
