@@ -243,7 +243,43 @@ You can also run individual scripts directly:
 
 # Copy dotfiles only
 ./scripts/06-dotfiles.sh
+
+# Cleanup/Uninstall everything
+./scripts/99-cleanup.sh
 ```
+
+## Uninstall / Cleanup
+
+Need to remove everything? Use the cleanup script:
+
+```bash
+./scripts/99-cleanup.sh
+```
+
+The cleanup script offers an interactive menu to selectively remove:
+
+1. **GUI Applications** - VSCode, Cursor, OrbStack, etc.
+2. **CLI Tools** - gh, fzf, bat, eza, ripgrep, etc.
+3. **Nerd Fonts** - All installed Nerd Fonts
+4. **Programming Languages** - Node.js/NVM, Python/Pyenv
+5. **Oh My Zsh** - Including all plugins
+6. **Dotfiles** - .zshrc, .gitconfig, starship.toml, etc.
+7. **macOS Settings** - Restore to system defaults
+8. **Homebrew** - Complete Homebrew removal
+9. **Everything** - Full cleanup (all of the above)
+
+**Features:**
+- ⚠️ Interactive confirmations for safety
+- 🗂️ Automatic backup of dotfiles before removal
+- 🔍 Selective uninstall - choose what to remove
+- ♻️ Cleans up caches and temporary files
+- 🔄 Option to restore macOS settings to defaults
+
+**Important Notes:**
+- The script will ask for confirmation before each major action
+- Backups of dotfiles are preserved
+- Some directories (~/Developer, ~/Projects) are not removed
+- It's recommended to restart after cleanup
 
 ## Project Structure
 
@@ -259,7 +295,8 @@ setup-script/
 │   ├── 03-languages.sh    # Programming languages
 │   ├── 04-apps.sh         # Applications and fonts
 │   ├── 05-macos.sh        # macOS settings
-│   └── 06-dotfiles.sh     # Dotfiles setup
+│   ├── 06-dotfiles.sh     # Dotfiles setup
+│   └── 99-cleanup.sh      # Cleanup/Uninstall script
 └── dotfiles/              # Configuration files
     ├── .zshrc             # Zsh configuration
     ├── .gitconfig         # Git configuration

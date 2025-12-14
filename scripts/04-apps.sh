@@ -30,6 +30,7 @@ APPS=(
     "boring-notch"          # Boring Notch
     "bruno"                 # Bruno API Client
     "claude-code"           # Claude Code CLI
+    "macdown"               # MacDown (Markdown Editor)
 )
 
 for app in "${APPS[@]}"; do
@@ -136,6 +137,7 @@ echo -e "Editores:"
 echo -e "  • Visual Studio Code"
 echo -e "  • Cursor"
 echo -e "  • Claude Code CLI"
+echo -e "  • MacDown (Markdown Editor)"
 echo -e ""
 echo -e "Contenedores:"
 echo -e "  • OrbStack"
