@@ -56,16 +56,17 @@ make install
 ### 4. Applications
 - **Editors**:
   - Visual Studio Code
-  - Cursor (AI-powered editor)
+  - OpenCode (AI-powered editor)
   - Claude Code CLI
 - **Utilities**:
   - AppCleaner (Complete uninstaller)
-  - Boring Notch (Dynamic Island enhancement)
   - Bruno (API client)
 - **Containers**:
   - OrbStack (Docker/Linux alternative)
 - **Fonts**:
   - Nerd Fonts (FiraCode, Hack, Meslo, JetBrains Mono, Maple Mono)
+- **Manual Installation Required**:
+  - Boring Notch (Dynamic Island enhancement) - Download from https://www.boringnotch.com/
 
 ### 5. Modern CLI Tools
 - **Core Tools**:
@@ -73,6 +74,7 @@ make install
   - `fzf` - Fuzzy finder
   - `bat` - Enhanced cat with syntax highlighting
   - `eza` - Modern ls replacement
+  - `lsd` - LSDeluxe, another modern ls alternative
   - `ripgrep` - Fast search tool
   - `fd` - Enhanced find
   - `tldr` - Simplified documentation
@@ -98,9 +100,12 @@ make install
 - `.gitconfig` with aliases and optimized configuration
 - `.gitignore_global` - Global Git ignore patterns
 - `starship.toml` - Starship prompt configuration
+- **iTerm2 Configuration**:
+  - `Profiles.json` - Custom iTerm2 profiles (ZSH + Hotkey Window)
+  - `keys.itermkeymap` - Custom keyboard mappings
 - **LazyVim** - Pre-configured Neovim distribution with modern IDE features
 - Basic SSH config
-- Directory structure (~/Developer, ~/Projects, ~/.config)
+- Directory structure (~/Develop, ~/.config)
 
 ## Quick Start
 
@@ -280,7 +285,7 @@ The cleanup script offers an interactive menu to selectively remove:
 **Important Notes:**
 - The script will ask for confirmation before each major action
 - Backups of dotfiles are preserved
-- Some directories (~/Developer, ~/Projects) are not removed
+- Some directories (~/Develop) are not removed
 - It's recommended to restart after cleanup
 
 ## Project Structure
@@ -303,7 +308,9 @@ setup-script/
     ├── .zshrc             # Zsh configuration
     ├── .gitconfig         # Git configuration
     ├── .gitignore_global  # Global Git ignore
-    └── starship.toml      # Starship prompt config
+    ├── starship.toml      # Starship prompt config
+    ├── Profiles.json      # iTerm2 profiles
+    └── keys.itermkeymap   # iTerm2 keyboard mappings
 ```
 
 ## Customization
@@ -343,6 +350,16 @@ Edit `scripts/05-macos.sh` to adjust system settings.
 Dotfiles are in `dotfiles/`:
 - Edit `.zshrc` to add aliases, functions, etc.
 - Edit `.gitconfig` to change git aliases
+
+**Local customizations:**
+For machine-specific settings, create `~/.zshrc.local`:
+```bash
+# This file is automatically sourced by .zshrc
+# Add your local configurations here
+
+export MY_CUSTOM_VAR="value"
+alias myalias="custom command"
+```
 
 ## Post-Installation
 
@@ -385,12 +402,26 @@ To see icons in Starship prompt and LazyVim, use a Nerd Font:
 1. Open Terminal/iTerm2
 2. Go to Preferences → Profiles → Text
 3. Change font to any Nerd Font installed:
-   - MesloLGS Nerd Font (recommended for Starship)
+   - MesloLGM DZ Nerd Font (recommended, used in included profiles)
    - FiraCode Nerd Font
    - Hack Nerd Font
    - JetBrains Mono Nerd Font
 
-### 5. Start Neovim with LazyVim
+### 5. Import iTerm2 Profiles (Optional)
+
+Custom iTerm2 profiles are included in `dotfiles/`:
+
+1. Open iTerm2 → Preferences → Profiles
+2. Click the gear icon → Import JSON Profiles
+3. Select `dotfiles/Profiles.json`
+4. For keyboard mappings: Preferences → Keys → Key Bindings → Import
+5. Select `dotfiles/keys.itermkeymap`
+
+**Included profiles:**
+- **ZSH**: Main profile with custom colors and status bar
+- **Hotkey Window**: Drop-down terminal (Ctrl+A to toggle)
+
+### 6. Start Neovim with LazyVim
 
 LazyVim is automatically installed during the dotfiles setup. To start using it:
 
@@ -421,7 +452,7 @@ nvim
 
 For more info: [LazyVim Documentation](https://www.lazyvim.org/)
 
-### 6. Restart Terminal
+### 7. Restart Terminal
 
 ```bash
 exec $SHELL -l
@@ -455,6 +486,11 @@ cd setup-script
 
 ## Useful Aliases (Included in .zshrc)
 
+### General
+- `c` - clear screen (preserving scrollback)
+- `zshconfig` - edit .zshrc
+- `zshreload` - reload .zshrc
+
 ### Git
 - `gs` - git status
 - `ga` - git add
@@ -462,32 +498,57 @@ cd setup-script
 - `gp` - git push
 - `gl` - git pull
 - `glog` - pretty git log
+- `lg` - lazygit
 
 ### Node.js
 - `ni` - npm install
+- `nid` - npm install --save-dev
 - `nrd` - npm run dev
 - `nrs` - npm run start
 - `nrb` - npm run build
+- `nrt` - npm run test
+- `dev` - npm run dev
+- `npmv` - npm version (no git tag)
+- `cin` - clean install (removes node_modules and reinstalls)
 
-### Docker
-- `dps` - docker ps
-- `dc` - docker-compose
-- `dcu` - docker-compose up
+### Python
+- `py` / `py3` - python / python3
+- `venv` - create virtual environment
+- `activate` - activate venv
 
 ### System
 - `update` - Update Homebrew and packages
 - `cleanup` - Clean caches
-- `ll` - enhanced ls (with eza/exa)
+- `ll` - enhanced ls (with eza)
+- `la` - list all with details
+- `lt` - tree view
+- `cat` - bat (with syntax highlighting)
+
+### Network & Utilities
+- `localip` - show local IP
+- `publicip` - show public IP
+- `ehs` - edit /etc/hosts
+- `ehr` - reload DNS cache
+
+### Neovim
+- `vim` / `vi` / `v` - opens neovim
 
 View all aliases: `alias`
 
-## Useful Functions (Included in .zshrc)
+## Useful Functions
 
-- `mkcd <dir>` - Create directory and cd into it
-- `extract <file>` - Extract any compressed file
-- `gcl <url>` - Git clone and cd into directory
-- `killport <port>` - Kill process on port
-- `serve [port]` - Quick HTTP server
+Functions can be added to your `.zshrc.local` file for machine-specific customizations:
+
+```bash
+# Create directory and cd into it
+mkcd() { mkdir -p "$1" && cd "$1" }
+
+# Kill process on port
+killport() { lsof -ti:$1 | xargs kill -9 }
+
+# Quick HTTP server
+serve() { python -m http.server ${1:-8000} }
+```
 
 ## Troubleshooting
 
@@ -566,8 +627,9 @@ Feel free to customize this script for your needs. Some ideas:
 
 - Add more applications
 - Add more macOS configurations
-- Add VSCode/Cursor scripts
+- Add VSCode extensions sync
 - Add more advanced SSH/GPG configuration
+- Add iTerm2 shell integration scripts
 
 ## Resources
 
@@ -582,6 +644,9 @@ Feel free to customize this script for your needs. Some ideas:
 - [Lazygit](https://github.com/jesseduffield/lazygit) - Terminal UI for git
 - [Neovim](https://neovim.io/) - Hyperextensible Vim-based text editor
 - [LazyVim](https://www.lazyvim.org/) - Pre-configured Neovim IDE distribution
+- [eza](https://github.com/eza-community/eza) - Modern ls replacement
+- [lsd](https://github.com/lsd-rs/lsd) - LSDeluxe, another modern ls
+- [iTerm2](https://iterm2.com/) - Terminal emulator for macOS
 
 ## License
 
